@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دەرمانناس (DarmanNas) - سیستەمی فەرمی زانیاری دەرمان و بەستنەوە بە OpenFDA</title>
+  <meta name="description" content="سیستەمی فەرمی و زانستی زانیاری دەرمان لە کوردستان، بەستراوە بە بنکەدراوەی فەرمی FDA بەبێ خەیاڵپڵاوی ژیری دەستکرد بۆ پاراستنی ژیانی هاوڵاتییان.">
+  
+  <!-- Google Fonts: Vazirmatn (Kurdish/Arabic) & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <!-- Safety & Official Disclaimer Bar -->
+  <div class="disclaimer-banner">
+    <div class="container disclaimer-content">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="disclaimer-pill">🛡️ سەرچاوەی ١٠٠٪ فەرمی</span>
+        <span>داتاکانی ئەم سیستەمە ڕاستەوخۆ لە ڕێکخراوی دەرمان و خۆراکی ئەمریکا (OpenFDA) وەردەگیرێن و جێگەی پشکنینی پزیشکی پسپۆڕ ناگرێتەوە.</span>
+      </div>
+      <div>
+        <span>هێڵی فریاکەوتنی گشتی: <strong>١٢٢</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="/" class="nav-brand" id="brandLogo">
+        <div class="brand-icon-wrap">
+          <span>💊</span>
+        </div>
+        <div class="brand-titles">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <h1>دەرمانناس</h1>
+            <span class="developer-tag">دروستکراوە لە لایەن Zhyar Devەوە</span>
+          </div>
+          <span>DARMAN-NAS • FDA LIVE</span>
+        </div>
+      </a>
+
+      <div class="nav-links">
+        <div class="fda-live-badge" title="بەستراوە بە سێرڤەری دەستەی چاودێری دەرمان و خۆراکی ئەمریکا">
+          <span class="pulse-dot"></span>
+          <span>OpenFDA Connected</span>
+        </div>
+
+        <a href="#symptomSection" class="nav-btn" id="navSymptomBtn">
+          <span>🩺</span> پرسیار لەسەر ئازار
+        </a>
+        <a href="#interactionSection" class="nav-btn" id="navInteractionBtn">
+          <span>⚡</span> پشکنینی کارلێک
+        </a>
+        <a href="#allergySection" class="nav-btn" id="navAllergyBtn">
+          <span>🛡️</span> پشکنەری حەساسیەت
+        </a>
+        <a href="#emergencySection" class="nav-btn" id="navEmergencyBtn">
+          <span>🚨</span> فریاکەوتن و خەفەر
+        </a>
+
+        <a href="tel:122" class="emergency-quick-call">
+          <span>📞</span> ١٢٢
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section & Master Search -->
+  <header class="hero-section">
+    <div class="container">
+      <div class="hero-badge-tag">
+        <span>🔬</span> سیستەمی بێ خەیاڵپڵاوی - وەرگرتنی ڕاستەوخۆی دەقی فەرمی دەرمان لە FDA
+      </div>
+      <h2 class="hero-title">
+        پێش خواردنی هەر دەرمانێک، دڵنیابە لە سەلامەتییەکەی
+      </h2>
+      <p class="hero-subtitle">
+        ناوی هەر دەرمانێک بنووسە بە کوردی، عەرەبی یان ئینگلیزی، دەستبەجێ زانیارییە پەسەندکراوەکانی لە ڕێکخراوی چاودێری دەرمان و خۆراکی جیهانی (FDA) بەردەست دەبێت.
+      </p>
+
+      <!-- Master Search Box -->
+      <div class="search-wrapper">
+        <div class="search-box-card">
+          <span class="search-icon-badge">🔍</span>
+          <input 
+            type="text" 
+            id="medicineSearchInput" 
+            class="search-input" 
+            placeholder="ناوی دەرمان بنووسە بە کوردی، عەرەبی، یان ئینگلیزی (وەک: پەنادۆڵ، پرۆفین، ئۆگەنتین، گلوکۆفاج)..."
+            autocomplete="off"
+          >
+          <div class="search-actions">
+            <button type="button" class="action-icon-btn" id="voiceSearchBtn" title="گەڕان بە دەنگ">
+              🎙️
+            </button>
+            <button type="button" class="action-icon-btn" id="cameraScanBtn" title="سکانکردنی وێنەی پاکەت یان بارکۆد">
+              📷
+            </button>
+            <button type="button" class="search-submit-btn" id="searchSubmitBtn">
+              گەڕان
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Auto-Suggestions Dropdown -->
+        <div class="suggestions-dropdown" id="suggestionsDropdown"></div>
+      </div>
+
+      <!-- Quick Category Filter Chips -->
+      <div class="category-chips" id="popularChipsContainer">
+        <button class="chip-btn active" data-filter="all">هەموو دەرمانە باوەکان</button>
+        <button class="chip-btn" data-filter="Pain">ئازارشکێن و تا (Analgesic)</button>
+        <button class="chip-btn" data-filter="Antibiotic">دژە بەکتریا (Antibiotic)</button>
+        <button class="chip-btn" data-filter="Gastrointestinal">گەدە و دڵەکزێ (Stomach)</button>
+        <button class="chip-btn" data-filter="Cardiology">دڵ و پەستانی خوێن (Heart & BP)</button>
+        <button class="chip-btn" data-filter="Diabetes">شەکرە (Diabetes)</button>
+        <button class="chip-btn" data-filter="Allergy">هەستیاری (Allergy)</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="main-content-layout">
+    <div class="container">
+
+      <!-- Dynamic Drug Details Card (Rendered via JS) -->
+      <section id="drugDetailsContainer" class="drug-details-container"></section>
+
+      <!-- Patient Symptom Triage & Specialist Referral Section -->
+      <section id="symptomSection" class="medical-card" style="margin-bottom: 40px; border-top: 4px solid #8b5cf6;">
+        <div class="section-headline">
+          <span style="font-size: 2.2rem;">🩺</span>
+          <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 8px;">پرسیاری نەخۆش: ڕێبەری پشکنینی ئازار و دیاریکردنی دکتۆر</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 750px; margin: 0 auto 20px auto;">
+            شوێنی ئازارەکەت بنووسە. سیستەمەکە بە وردی هۆکاری ئەگەری، پلەی مەترسی، جۆری دکتۆری پسپۆڕ و ڕێنمایی هێورکردنەوەی بێ دەرمانت بۆ دەستنیشان دەکات.
+          </p>
+        </div>
+
+        <!-- Text Input Form -->
+        <div style="max-width: 820px; margin: 0 auto;">
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <input 
+              type="text" 
+              id="symptomInput" 
+              class="drug-select-input" 
+              style="flex: 1; font-size: 1.05rem; padding: 14px 20px;" 
+              placeholder="بۆ نموونە: سکی لای ڕاستم ئازارێکی توندی هەیە و ڕشانەوەم لەگەڵدایە، یان: سنگم دەسوتێت..."
+            >
+            <button type="button" class="check-interaction-btn" id="checkSymptomBtn" style="background: linear-gradient(135deg, #7c3aed, #2563eb);">
+              پشکنینی ئازار
+            </button>
+          </div>
+
+          <!-- Quick Sample Queries -->
+          <div style="margin-top: 14px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <span style="font-size: 0.8rem; color: var(--text-dim);">نموونە باوەکان:</span>
+            <button type="button" class="chip-btn symptom-sample-btn" data-query="سنگم دەسوتێت و ئازاری هەیە لەگەڵ تەنگەنەفەسی">ئازاری سنگ</button>
+            <button type="button" class="chip-btn symptom-sample-btn" data-query="سکی لای ڕاستم ئازاری توندی هەیە بە دەست لێدان">سکی لای ڕاست (ڕیخۆڵەکوێرە)</button>
+            <button type="button" class="chip-btn symptom-sample-btn" data-query="کەمەرم و تەنیشتم ئازارێکی تیژە و میزم دەسوتێت">بەردی گورچیلە</button>
+            <button type="button" class="chip-btn symptom-sample-btn" data-query="ددانم دێشێت و پووکم ئاوساوە">ددان ئێشە و پووک</button>
+            <button type="button" class="chip-btn symptom-sample-btn" data-query="منداڵەکەم تای بەرزە و دەلەرزێت">تای منداڵان</button>
+            <button type="button" class="chip-btn symptom-sample-btn" data-query="پێستم سووتاوە بە ئاوی گەرم">سووتانی پێست</button>
+            <button type="button" class="chip-btn symptom-sample-btn" data-query="چاوم زۆر دەخورێت و سوورە">چاوئێشە و خوران</button>
+            <button type="button" class="chip-btn symptom-sample-btn" data-query="سەرسوڕان و گوێزرینگانم هەیە">سەرسوڕانی گوێ</button>
+            <button type="button" class="chip-btn symptom-sample-btn" data-query="پەستانی خوێنم بەرزە و سەرم گێژ دەخوات">بەرزی پەستانی خوێن</button>
+            <button type="button" class="chip-btn symptom-sample-btn" data-query="فەقەراتم دێشێت و قاچم سڕ بووە">فەقەرات و سڕبوونی قاچ</button>
+            <button type="button" class="chip-btn symptom-sample-btn" data-query="قۆڵۆنم بای کردووە و غازاتی زۆرە">قۆڵۆن و غازات</button>
+            <button type="button" class="chip-btn symptom-sample-btn" data-query="شەکرەم بەرزە و زۆر تینووم دەبێت">شەکرە و تینوێتی</button>
+          </div>
+
+          <!-- Dynamic Result Container -->
+          <div id="symptomResultContainer" style="margin-top: 28px; display: none;"></div>
+        </div>
+      </section>
+
+      <!-- Drug-to-Drug Interaction Checker Section -->
+      <section id="interactionSection" class="interaction-section">
+        <div class="section-headline">
+          <span style="font-size: 2rem;">⚡</span>
+          <h3>پشکنەری پێکەوەخواردنی دەرمانەکان (Drug Interaction Checker)</h3>
+          <p>ئایا دەکرێت دوو دەرمان پێکەوە بخورێن؟ ناوی هەردووکیان دیاری بکە بۆ پشکنینی دژەیەکبوونی پزیشکی بەپێی ستانداردی FDA:</p>
+        </div>
+
+        <div class="interaction-form-row">
+          <div>
+            <input 
+              type="text" 
+              id="interactionDrug1" 
+              class="drug-select-input" 
+              placeholder="دەرمانی یەکەم (وەک: پرۆفین یان Ibuprofen)"
+            >
+          </div>
+          <div class="interaction-plus-badge">
+            +
+          </div>
+          <div>
+            <input 
+              type="text" 
+              id="interactionDrug2" 
+              class="drug-select-input" 
+              placeholder="دەرمانی دووەم (وەک: ئەسپیڕین یان Aspirin)"
+            >
+          </div>
+          <div>
+            <button type="button" class="check-interaction-btn" id="checkInteractionBtn">
+              پشکنینی دژەیەکبوون
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Drug & Penicillin Allergy Shield Section -->
+      <section id="allergySection" class="medical-card" style="margin-top: 40px; border-top: 4px solid #ef4444;">
+        <div class="section-headline">
+          <span style="font-size: 2.2rem;">🛡️</span>
+          <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 8px;">پشکنەری حەساسیەتی پێنسلین و دەرمانەکان (Drug Allergy Shield)</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 780px; margin: 0 auto 20px auto;">
+            ئایا حەساسیەتی پێنسلین، پرۆفین یان سۆلفات هەیە؟ جۆری حەساسیەتەکەت و ئەو دەرمانەی دەتەوێت بیخۆیت دیاری بکە بۆ دڵنیابوونەوە لە نەبوونی شۆکی حەساسیەتی مەترسیدار.
+          </p>
+        </div>
+
+        <div class="interaction-form-row">
+          <div>
+            <label style="display: block; font-size: 0.85rem; color: #fca5a5; margin-bottom: 6px; font-weight: 600;">جۆری حەساسیەتەکەت:</label>
+            <input 
+              type="text" 
+              id="allergyTypeInput" 
+              class="drug-select-input" 
+              placeholder="وەک: پێنسلین، برۆفین، یان سۆلفا"
+            >
+          </div>
+          <div class="interaction-plus-badge" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border-color: rgba(239, 68, 68, 0.4); font-size: 1.3rem;">
+            🛡️
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.85rem; color: #93c5fd; margin-bottom: 6px; font-weight: 600;">ئەو دەرمانەی دەتەوێت بیخۆیت:</label>
+            <input 
+              type="text" 
+              id="allergyDrugInput" 
+              class="drug-select-input" 
+              placeholder="وەک: ئۆگمێنتین، کلاڤۆکس، سفیکسیم، فۆڵتارین"
+            >
+          </div>
+          <div style="align-self: flex-end;">
+            <button type="button" class="check-interaction-btn" id="checkAllergyBtn" style="background: linear-gradient(135deg, #ef4444, #b91c1c);">
+              پشکنینی حەساسیەت
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Allergy Samples -->
+        <div style="margin-top: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center;">
+          <span style="font-size: 0.8rem; color: var(--text-dim);">تاقیکردنەوەی خێرا:</span>
+          <button type="button" class="chip-btn allergy-sample-btn" data-allergy="پێنسلین" data-drug="ئۆگمێنتین">پێنسلین + ئۆگمێنتین</button>
+          <button type="button" class="chip-btn allergy-sample-btn" data-allergy="پێنسلین" data-drug="سفیکسیم (سوپراکس)">پێنسلین + سفیکسیم</button>
+          <button type="button" class="chip-btn allergy-sample-btn" data-allergy="پرۆفین" data-drug="فۆڵتارین">پرۆفین + فۆڵتارین</button>
+          <button type="button" class="chip-btn allergy-sample-btn" data-allergy="سۆلفا" data-drug="بەکتریم">سۆلفا + بەکتریم</button>
+          <button type="button" class="chip-btn allergy-sample-btn" data-allergy="پێنسلین" data-drug="پەنادۆڵ (پاراسیتامۆڵ)">پێنسلین + پەنادۆڵ</button>
+        </div>
+
+        <!-- Allergy Result Container -->
+        <div id="allergyResultContainer" style="margin-top: 24px; display: none;"></div>
+      </section>
+
+      <!-- Emergency Directory Section -->
+      <section id="emergencySection" class="medical-card" style="margin-top: 40px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;">
+          <div>
+            <h3 style="font-size: 1.6rem; font-weight: 800; color: #fff;">🚨 فریاکەوتن و خەفەر لە شارەکانی کوردستان</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">ژمارە گرنگەکان لە کاتی خواردنی دەرمانی هەڵە یان حاڵەتی لەناکاو</p>
+          </div>
+          <span class="emergency-num-badge" style="font-size: 1.3rem;">١٢٢ سەرتاسەری</span>
+        </div>
+
+        <div class="emergency-grid" id="emergencyDirectoryContainer"></div>
+
+        <!-- Poison First Aid Guide -->
+        <div class="alert-box-danger" style="margin-top: 24px; padding: 22px;">
+          <h4>⚠️ لە کاتی خواردنی دەرمانی زۆر یان ژەهراویبوون چی بکەین؟</h4>
+          <ul style="list-style: none; padding: 0; line-height: 2; font-size: 0.95rem;">
+            <li>• دەستبەجێ پەیوەندی بە <strong>١٢٢</strong> بکە بۆ ناردنی ئۆتۆمبێلی فریاکەوتن.</li>
+            <li>• بە زۆر نەخۆشەکە مەڕشێنەوە چونكە هەندێک ماددە زیان بە قوڕگ و بۆڕی هەناسە دەگەیەنن.</li>
+            <li>• پاکەتی دەرمانەکە یان کەپسولە مابووەکان لەگەڵ خۆت ببە بۆ نەخۆشخانە بۆ دیاریکردنی دژەژەهرەکەی.</li>
+            <li>• لەسەر لا نەخۆشەکە دابنێ ئەگەر بێهۆش بوو تا هەناسەی نەوەستێت.</li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Image / Barcode Scanner Modal -->
+  <div class="modal-overlay" id="scannerModal">
+    <div class="modal-window">
+      <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+      <div class="modal-header">
+        <h3>📷 سکانکردنی پاکەتی دەرمان</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">وێنەی پاکەتی دەرمانەکەت بەرز بکەرەوە تا ڕاستەوخۆ ناوی دەرمانەکەت بۆ بدۆزینەوە.</p>
+      </div>
+
+      <div class="scanner-dropzone" id="scannerDropzone">
+        <div class="dropzone-icon">📸</div>
+        <h4 style="color: #fff; margin-bottom: 6px;">کلیک بکە بۆ دیاریکردنی وێنە</h4>
+        <p style="color: var(--text-dim); font-size: 0.85rem;">یان فۆتۆی پاکەتی دەرمانەکە ڕابکێشە بۆ ئێرە (JPG, PNG)</p>
+        <input type="file" id="dropzoneFile" accept="image/*" style="display: none;">
+      </div>
+
+      <div id="scannerStatus" style="text-align: center; min-height: 40px;"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#medicineSearchInput">گەڕانی دەرمان</a>
+        <a href="#interactionSection">پشکنینی دژەیەکبوون</a>
+        <a href="#emergencySection">فریاکەوتنی ١٢٢</a>
+        <a href="https://open.fda.gov/" target="_blank" rel="noopener noreferrer">ماڵپەڕی فەرمی OpenFDA</a>
+      </div>
+      <p style="margin-bottom: 8px; font-weight: 700; color: #c4b5fd;">
+        ✨ پەرەپێدراو و دروستکراوە لە لایەن Zhyar Devەوە بۆ خزمەتی هاوڵاتییانی کوردستان
+      </p>
+      <p style="margin-bottom: 8px;">
+        دەرمانناس (DarmanNas) • پرۆژەیەکی تەندروستی گشتییە بۆ پاراستنی گیانی هاوڵاتییان بە بەستنەوەی فەرمی بە بنکەدراوەی جیهانی FDA.
+      </p>
+      <p style="color: var(--text-dim); font-size: 0.8rem;">
+        ئاگاداری: زانیارییەکانی ئەم ئەپڵیکەیشنە بۆ بەرچاوڕوونی و پاراستنی سەلامەتییە و جێگەی سەردانی پزیشکی پسپۆڕ یان ڕەچەتە ناگرێتەوە.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
